@@ -25,4 +25,6 @@ public ArrayList<Jogador> getMeioCampo() {
 public void setMeioCampo(ArrayList<Jogador> meioCampo) {
     this.meioCampo = meioCampo;
 }
+
+    
 }

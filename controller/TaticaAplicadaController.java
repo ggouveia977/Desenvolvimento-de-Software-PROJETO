@@ -4,8 +4,12 @@ import java.util.ArrayList;
 
 public class TaticaAplicadaController {
     
-    private static ArrayList<TaticaAplicada> taticas = new ArrayList<TaticaAplicada>();
-    public ArrayList<TaticaAplicada> listarTaticas(){
-        return taticas;
+    private static ArrayList<TaticaAplicada> jogadoresNaTatica = new ArrayList<TaticaAplicada>();
+    public static ArrayList<TaticaAplicada> listarJogadoresNaTatica(){
+        return jogadoresNaTatica;
     }
+
+
+
+  
 }   

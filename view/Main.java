@@ -30,6 +30,7 @@ public class Main{
                     listar.listarTaticas();                  
                     opcao = Console.readInt("Digite o numero da tática escolhida: ");
                     listar.aplicarTatica(opcao);
+                    listar.listarJogadoresNaTatica();
                 break;
             }
         }while(opcao != 0);
