@@ -1,22 +1,25 @@
 package view;
 import controller.JogadoresController;
-import controller.TaticaAplicadaController;
 import model.Jogador;
 import model.Tatica;
 import model.TaticaAplicada;
 import controller.TaticaController;
+
+import utils.Console;
 import java.util.ArrayList;
 
-public class Listar {
+public class Aplicações {
     JogadoresController jogadoresController = new JogadoresController();
     TaticaController taticaController = new TaticaController();
     TaticaAplicada taticaAplicadaSalva = new TaticaAplicada();
-    
+    int idTaticaAplicada = -1;
     
     public void listar(){
             System.out.println("LISTAGEM DE JOGADORES: "); 
-            for (Jogador jogadorCadastrado : jogadoresController.listar()) {
-                System.out.println(jogadorCadastrado);
+            int numJogador = 1;
+            for (Jogador jogadorCadastrado : jogadoresController.puxarLista()) {
+                System.out.println(numJogador + "-" + jogadorCadastrado);
+                numJogador++;
             }
        }
 
@@ -35,46 +38,41 @@ public class Listar {
 
     public void aplicarTatica(int opcaoEscolhida){  //pega a opção de tática escolhida... 
         Tatica minhaTatica = taticaController.getTatica(opcaoEscolhida); //Novo objeto de Tatica que pega a opção escolhida.
-        //System.out.println(minhaTatica.getDetalhesTatica());
-
-
+        idTaticaAplicada = opcaoEscolhida;
         TaticaAplicada novaTaticaAplicada = new TaticaAplicada();       //instanciando nova tatica aplicada
-
         ArrayList<Jogador> jogadoresAtaque = new ArrayList<Jogador>();  //instanciando as listas do tipo Jogador.
         ArrayList<Jogador> jogadoresDefesa = new ArrayList<Jogador>();
         ArrayList<Jogador> jogadoresMeioCampo = new ArrayList<Jogador>();
 
-        if(jogadoresAtaque.size() + jogadoresDefesa.size() + jogadoresMeioCampo.size() >= 9){
+      // if(jogadoresAtaque.size() + jogadoresDefesa.size() + jogadoresMeioCampo.size() >= 9){
             
         
 
         for(int i = 0; i < minhaTatica.getNumDeJogadoresNoAtaque(); i++){       //Enquanto o numero de jogadores no ataque for menor que o numero de jogadores no ataque da tática ele executa
-            Jogador jogadorSelecionado = jogadoresController.listar().get(i);   //Pega um jogador na posição i da lista de jogadores cadastrados.
+            Jogador jogadorSelecionado = jogadoresController.puxarLista().get(i);   //Pega um jogador na posição i da lista de jogadores cadastrados.
             jogadoresAtaque.add(jogadorSelecionado);                            // adiciona os jogadores no ataque.
         }
 
         for(int i = 0; i < minhaTatica.getNumDeJogadoresNaDefesa(); i++){       //Adiciona os jogadores da defesa
             int contDefesa = minhaTatica.getNumDeJogadoresNoAtaque();
             int posicaoProximoJogador = contDefesa + i;  
-            Jogador jogadorSelecionado = jogadoresController.listar().get(posicaoProximoJogador);
+            Jogador jogadorSelecionado = jogadoresController.puxarLista().get(posicaoProximoJogador);
             jogadoresDefesa.add(jogadorSelecionado);
-        }
-        
+        }      
         for(int i = 0; i < minhaTatica.getNumDeJogadoresNoMeioDeCampo(); i++){  //Adiciona os jogadores no meio campo
-            int contMeioCampo = minhaTatica.getNumDeJogadoresNaDefesa();
+            int contMeioCampo = minhaTatica.getNumDeJogadoresNaDefesa() + minhaTatica.getNumDeJogadoresNoAtaque();
             int posicaoProximoJogador = contMeioCampo + i;
-            Jogador jogadorSelecionado = jogadoresController.listar().get(posicaoProximoJogador);
+            Jogador jogadorSelecionado = jogadoresController.puxarLista().get(posicaoProximoJogador);
             jogadoresMeioCampo.add(jogadorSelecionado);
         }
 
-        novaTaticaAplicada.setAtaque(jogadoresAtaque);
+        novaTaticaAplicada.setAtaque(jogadoresAtaque);              //Seta os jogadores da tatica na Tatica aplicada
         novaTaticaAplicada.setDefesa(jogadoresDefesa);
         novaTaticaAplicada.setMeioCampo(jogadoresMeioCampo);
 
         this.taticaAplicadaSalva = novaTaticaAplicada;
         
-    }else{
-        System.out.println("É necessário no minimo 10 jogadores!");
+    
     }
 
         
@@ -91,7 +89,7 @@ public class Listar {
 
         
         //todo verificar se eu tenho 10 jogadores para aplicar uma tatica, caso não, mandar uma mensagem de erro "você nao tem 10 jogadores! favor adicione 10"
-    }
+    
 
     public void listarJogadoresNaTatica(){
         System.out.println("LISTAGEM DE JOGADORES NA TATICA: ");     
@@ -100,7 +98,43 @@ public class Listar {
             System.out.println("Jogadores Meio Campo: " + "\n" + this.taticaAplicadaSalva.getMeioCampo());
         
    }
+   public void atualizarJogador(){
+        JogadoresController jogadoresTest = new JogadoresController();
+        this.listar();
+        int jogadorEscolhido = Console.readInt("Escolha o numero jogador que quer alterar: ");
+        Jogador jogador = new Jogador();
+        jogador.setNome(Console.readString("Nome do jogador: "));
+        jogador.setCamisa(Console.readString("Camisa do jogador: "));        
+        jogador.setMelhorPosicao(Console.readString("Melhor posição do jogador: "));
+        jogadoresTest.atualizar(jogadorEscolhido - 1, jogador);
+        this.listar();
+        if(idTaticaAplicada >= 0){
+            this.aplicarTatica(idTaticaAplicada);
+            this.listarJogadoresNaTatica();
+        }
+   }
+
+   public void deletarJogadores(){
+       jogadoresController.deletar();
+   }
+
+   public void montarTatica(){
+        String nome = Console.readString("Escreva o nome da tática: ");
+        int ataque = Console.readInt("Escreva quantos jogadores terão no ataque: ");
+        int defesa = Console.readInt("Escreva quantos jogadores terão na defesa: ");
+        int meioCampo = Console.readInt("Escreva quantos jogadores terão no meio de campo: ");
+
+       if(ataque + defesa + meioCampo == 10){
+       Tatica tatica = new Tatica(nome, ataque, defesa, meioCampo);
+       taticaController.addTatica(tatica);
+        }else{
+            System.out.println("Numero de jogadores invalido");
+        }
+
+
+   }
     
+
        
     }
 

@@ -8,13 +8,15 @@ public class Main{
     public static void main(String[] args){
         int opcao = 0;
         AdicionarJogador validarJogador = new AdicionarJogador();
-        Listar listar = new Listar();
+        Aplicações aplicacoes = new Aplicações();
 
         do{
             System.out.println("1 - Montar seu time!");
             System.out.println("2 - Listar Jogadores do seu time! ");
             System.out.println("3 - Selecione uma tatica pronta! ");
             System.out.println("4 - Monte sua própria tática! ");
+            System.out.println("5 - Atualizar Jogador! ");
+            System.out.println("6 - Deletar jogadores! ");
             opcao = Console.readInt("Digite uma das opções: ");
 
             switch(opcao){
@@ -23,14 +25,26 @@ public class Main{
                 break;
 
                 case 2:
-                    listar.listar();
+                aplicacoes.listar();
                 break;  
                   
                 case 3:
-                    listar.listarTaticas();                  
+                aplicacoes.listarTaticas();                  
                     opcao = Console.readInt("Digite o numero da tática escolhida: ");
-                    listar.aplicarTatica(opcao);
-                    listar.listarJogadoresNaTatica();
+                    aplicacoes.aplicarTatica(opcao);
+                    aplicacoes.listarJogadoresNaTatica();
+                break;
+
+                case 4:
+                aplicacoes.montarTatica();
+                break;
+
+                case 5:
+                aplicacoes.atualizarJogador();
+                break;
+                    
+                case 6:
+                aplicacoes.deletarJogadores();
                 break;
             }
         }while(opcao != 0);
