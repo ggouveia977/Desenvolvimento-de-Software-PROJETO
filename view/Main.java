@@ -1,9 +1,5 @@
 package view;
 
-import java.util.ArrayList;
-
-import model.Jogador;
-import model.Opcoes;
 import utils.Console;
 import controller.*;
 //import java.util.ArrayList;
@@ -15,10 +11,8 @@ public class Main {
         int opcao = 0;
         AdicionarJogador adicionarJogador = new AdicionarJogador();
         Aplicações aplicacoes = new Aplicações();
-        Opcoes opcoes = new Opcoes();
         JogadoresController jogadores = new JogadoresController();
-        Jogador jogador = new Jogador();
-        String posicao = "Ataque";
+
 
         do {
             System.out.println("1 - Montar seu time!");

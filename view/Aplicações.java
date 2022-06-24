@@ -44,27 +44,38 @@ public class Aplicações {
         ArrayList<Jogador> jogadoresAtaque = new ArrayList<Jogador>();  //instanciando as listas do tipo Jogador.
         ArrayList<Jogador> jogadoresDefesa = new ArrayList<Jogador>();
         ArrayList<Jogador> jogadoresMeioCampo = new ArrayList<Jogador>();
-        ArrayList<Jogador> jogadoresNaPosicao = new ArrayList<Jogador>();
+
 
       // if(jogadoresAtaque.size() + jogadoresDefesa.size() + jogadoresMeioCampo.size() >= 9){
         
 
 
-        
-        for(int i = 0; i < minhaTatica.getNumDeJogadoresNoAtaque(); i++){       //Enquanto o numero de jogadores no ataque for menor que o numero de jogadores no ataque da tática ele executa
-            jogadoresAtaque.add(jogadoresController.buscarPosicao("Ataque").get(i));                            // adiciona os jogadores no ataque.
+        if (jogadoresController.buscarPosicao("Ataque").size() >= minhaTatica.getNumDeJogadoresNoAtaque()) {
+            for(int i = 0; i < minhaTatica.getNumDeJogadoresNoAtaque(); i++){       //Enquanto o numero de jogadores no ataque for menor que o numero de jogadores no ataque da tática ele executa
+                jogadoresAtaque.add(jogadoresController.buscarPosicao("Ataque").get(i));                            // adiciona os jogadores no ataque.
+            }
         }
 
+        else{
+            System.out.println("Poucos atacantes no time! Adicione mais atacantes ou escolha outra tatica.");
+        }
        
-
-        for(int i = 0; i < minhaTatica.getNumDeJogadoresNaDefesa(); i++){       //Adiciona os jogadores da defesa
-            jogadoresDefesa.add(jogadoresController.buscarPosicao("Defesa").get(i));
+        if (jogadoresController.buscarPosicao("Defesa").size() >= minhaTatica.getNumDeJogadoresNaDefesa()) {
+            for(int i = 0; i < minhaTatica.getNumDeJogadoresNaDefesa(); i++){       //Adiciona os jogadores da defesa
+                jogadoresDefesa.add(jogadoresController.buscarPosicao("Defesa").get(i));
+            }
+        }
+        else{
+            System.out.println("Poucos defensores no time! Adicione mais defensores ou escolha outra tatica.");
         }
 
-
-
-        for(int i = 0; i < minhaTatica.getNumDeJogadoresNoMeioDeCampo(); i++){  //Adiciona os jogadores no meio campo
-            jogadoresMeioCampo.add(jogadoresController.buscarPosicao("MeioCampo").get(i));
+        if (jogadoresController.buscarPosicao("Defesa").size() >= minhaTatica.getNumDeJogadoresNoMeioDeCampo()) {
+            for(int i = 0; i < minhaTatica.getNumDeJogadoresNoMeioDeCampo(); i++){  //Adiciona os jogadores no meio campo
+                jogadoresMeioCampo.add(jogadoresController.buscarPosicao("MeioCampo").get(i));
+            }
+        }
+        else{
+            System.out.println("Poucos meioCampistas no time! Adicione mais meioCampistas ou escolha outra tatica.");
         }
 
         novaTaticaAplicada.setAtaque(jogadoresAtaque);              //Seta os jogadores da tatica na Tatica aplicada

@@ -2,7 +2,6 @@
 package view;
 
 import java.util.ArrayList;
-import utils.Console;
 import controller.JogadoresController;
 import model.Jogador;
 

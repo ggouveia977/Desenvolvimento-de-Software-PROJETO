@@ -1,10 +1,9 @@
 package model;
 
-import java.util.ArrayList;
+
 
 import controller.JogadoresController;
 import controller.TaticaController;
-import model.Jogador;
 
 public class Opcoes {
     int idTaticaAplicada = -1;
