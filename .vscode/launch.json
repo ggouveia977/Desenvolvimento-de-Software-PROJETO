@@ -9,6 +9,13 @@
       "name": "Launch Main",
       "request": "launch",
       "mainClass": "view.Main",
+      "projectName": "Desenvolvimento-de-Software-PROJETO_136819f1"
+    },
+    {
+      "type": "java",
+      "name": "Launch Main",
+      "request": "launch",
+      "mainClass": "view.Main",
       "projectName": "Futebol_12590af4"
     },
     {

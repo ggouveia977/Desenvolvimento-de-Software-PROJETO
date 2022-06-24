@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import model.Jogador;
 
 public class JogadoresController {
-
+    
     private static ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
-
+    private ArrayList<Jogador> jogadoresNaposicao = new ArrayList<Jogador>();
+    
     public void adicionar(Jogador jogador) {
         jogadores.add(jogador); // adiciona um jogador ao array jogadores
     }
@@ -23,13 +24,17 @@ public class JogadoresController {
         jogadores.clear();
     }
 
-    public Jogador buscarPosicao(String posicao) {
+    public ArrayList<Jogador> buscarPosicao(String posicao) {
+        jogadoresNaposicao = new ArrayList<Jogador>();
         for (Jogador JogadorCadastrado : jogadores) {
             if (JogadorCadastrado.getMelhorPosicao().equals(posicao)) {
-                return JogadorCadastrado;
+                jogadoresNaposicao.add(JogadorCadastrado);
             }
         }
-        return null;
+
+        return jogadoresNaposicao;
+        
+        
     }
 
 }

@@ -13,6 +13,7 @@ public class Aplicações {
     TaticaController taticaController = new TaticaController();
     TaticaAplicada taticaAplicadaSalva = new TaticaAplicada();
     int idTaticaAplicada = -1;
+    String posicao;
     
     public void listar(){
             System.out.println("LISTAGEM DE JOGADORES: "); 
@@ -43,27 +44,27 @@ public class Aplicações {
         ArrayList<Jogador> jogadoresAtaque = new ArrayList<Jogador>();  //instanciando as listas do tipo Jogador.
         ArrayList<Jogador> jogadoresDefesa = new ArrayList<Jogador>();
         ArrayList<Jogador> jogadoresMeioCampo = new ArrayList<Jogador>();
+        ArrayList<Jogador> jogadoresNaPosicao = new ArrayList<Jogador>();
 
       // if(jogadoresAtaque.size() + jogadoresDefesa.size() + jogadoresMeioCampo.size() >= 9){
-            
         
 
+
+        
         for(int i = 0; i < minhaTatica.getNumDeJogadoresNoAtaque(); i++){       //Enquanto o numero de jogadores no ataque for menor que o numero de jogadores no ataque da tática ele executa
-            Jogador jogadorSelecionado = jogadoresController.puxarLista().get(i);   //Pega um jogador na posição i da lista de jogadores cadastrados.
-            jogadoresAtaque.add(jogadorSelecionado);                            // adiciona os jogadores no ataque.
+            jogadoresAtaque.add(jogadoresController.buscarPosicao("Ataque").get(i));                            // adiciona os jogadores no ataque.
         }
 
+       
+
         for(int i = 0; i < minhaTatica.getNumDeJogadoresNaDefesa(); i++){       //Adiciona os jogadores da defesa
-            int contDefesa = minhaTatica.getNumDeJogadoresNoAtaque();
-            int posicaoProximoJogador = contDefesa + i;  
-            Jogador jogadorSelecionado = jogadoresController.puxarLista().get(posicaoProximoJogador);
-            jogadoresDefesa.add(jogadorSelecionado);
-        }      
+            jogadoresDefesa.add(jogadoresController.buscarPosicao("Defesa").get(i));
+        }
+
+
+
         for(int i = 0; i < minhaTatica.getNumDeJogadoresNoMeioDeCampo(); i++){  //Adiciona os jogadores no meio campo
-            int contMeioCampo = minhaTatica.getNumDeJogadoresNaDefesa() + minhaTatica.getNumDeJogadoresNoAtaque();
-            int posicaoProximoJogador = contMeioCampo + i;
-            Jogador jogadorSelecionado = jogadoresController.puxarLista().get(posicaoProximoJogador);
-            jogadoresMeioCampo.add(jogadorSelecionado);
+            jogadoresMeioCampo.add(jogadoresController.buscarPosicao("MeioCampo").get(i));
         }
 
         novaTaticaAplicada.setAtaque(jogadoresAtaque);              //Seta os jogadores da tatica na Tatica aplicada

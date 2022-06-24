@@ -14,10 +14,10 @@ public class Opcoes {
     TaticaAplicada taticaAplicada = new TaticaAplicada();
     String posicao = jogadorComMelhorPosicaoAtacante.getMelhorPosicao();
 
-    public void jogadoresNoAtaque(int opcaoescolhida) {
-        jogadorComMelhorPosicaoAtacante = jogadoresController.buscarPosicao("Ataque");
+    // public void jogadoresNoAtaque(int opcaoescolhida) {
+    //     jogadorComMelhorPosicaoAtacante = jogadoresController.buscarPosicao("Ataque");
 
-    }
+    // }
 }
 
 // ArrayList<String> posicao = new ArrayList<String>();
