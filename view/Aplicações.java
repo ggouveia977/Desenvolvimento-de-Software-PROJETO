@@ -13,6 +13,7 @@ public class Aplicações {
     TaticaController taticaController = new TaticaController();
     TaticaAplicada taticaAplicadaSalva = new TaticaAplicada();
     int idTaticaAplicada = -1;
+    int contJogadores;
     
     public void listar(){
             System.out.println("LISTAGEM DE JOGADORES: "); 
@@ -44,26 +45,63 @@ public class Aplicações {
         ArrayList<Jogador> jogadoresDefesa = new ArrayList<Jogador>();
         ArrayList<Jogador> jogadoresMeioCampo = new ArrayList<Jogador>();
 
+
       // if(jogadoresAtaque.size() + jogadoresDefesa.size() + jogadoresMeioCampo.size() >= 9){
-            
         
 
-        for(int i = 0; i < minhaTatica.getNumDeJogadoresNoAtaque(); i++){       //Enquanto o numero de jogadores no ataque for menor que o numero de jogadores no ataque da tática ele executa
-            Jogador jogadorSelecionado = jogadoresController.puxarLista().get(i);   //Pega um jogador na posição i da lista de jogadores cadastrados.
-            jogadoresAtaque.add(jogadorSelecionado);                            // adiciona os jogadores no ataque.
+
+        if (jogadoresController.buscarPosicao("Ataque").size() >= minhaTatica.getNumDeJogadoresNoAtaque()) {
+            for(int i = 0; i < minhaTatica.getNumDeJogadoresNoAtaque(); i++){       //Enquanto o numero de jogadores no ataque for menor que o numero de jogadores no ataque da tática ele executa
+                jogadoresAtaque.add(jogadoresController.buscarPosicao("Ataque").get(i));                            // adiciona os jogadores no ataque.
+            }
         }
 
-        for(int i = 0; i < minhaTatica.getNumDeJogadoresNaDefesa(); i++){       //Adiciona os jogadores da defesa
-            int contDefesa = minhaTatica.getNumDeJogadoresNoAtaque();
-            int posicaoProximoJogador = contDefesa + i;  
-            Jogador jogadorSelecionado = jogadoresController.puxarLista().get(posicaoProximoJogador);
-            jogadoresDefesa.add(jogadorSelecionado);
-        }      
-        for(int i = 0; i < minhaTatica.getNumDeJogadoresNoMeioDeCampo(); i++){  //Adiciona os jogadores no meio campo
-            int contMeioCampo = minhaTatica.getNumDeJogadoresNaDefesa() + minhaTatica.getNumDeJogadoresNoAtaque();
-            int posicaoProximoJogador = contMeioCampo + i;
-            Jogador jogadorSelecionado = jogadoresController.puxarLista().get(posicaoProximoJogador);
-            jogadoresMeioCampo.add(jogadorSelecionado);
+        else{
+                for(int i = 0; i < jogadoresController.buscarPosicao("Ataque").size(); i++){       //Enquanto o numero de jogadores no ataque for menor que o numero de jogadores no ataque da tática ele executa
+                    jogadoresAtaque.add(jogadoresController.buscarPosicao("Ataque").get(i));
+                }
+                int j = 0;
+                do  {
+                    jogadoresAtaque.add(jogadoresController.buscarPosicao("MeioCampo").get(j));
+                    j++;
+                    contJogadores = j;
+                }
+                while (jogadoresAtaque.size() < minhaTatica.getNumDeJogadoresNoAtaque());
+        }
+       
+        
+        if ((jogadoresController.buscarPosicao("MeioCampo").size() - contJogadores)>= minhaTatica.getNumDeJogadoresNoMeioDeCampo()) {
+            for(int i = contJogadores; i < minhaTatica.getNumDeJogadoresNoMeioDeCampo(); i++){  //Adiciona os jogadores no meio campo
+                jogadoresMeioCampo.add(jogadoresController.buscarPosicao("MeioCampo").get(i));
+            }
+        }
+        else{
+            for(int i = contJogadores; i < jogadoresController.buscarPosicao("MeioCampo").size(); i++){  //Adiciona os jogadores no meio campo
+                jogadoresMeioCampo.add(jogadoresController.buscarPosicao("MeioCampo").get(i));
+            }
+            int j = 0;
+            do  {
+                    jogadoresMeioCampo.add(jogadoresController.buscarPosicao("Defesa").get(j));
+                    j++;
+                    contJogadores = j;
+                }
+                while (jogadoresMeioCampo.size() < minhaTatica.getNumDeJogadoresNoMeioDeCampo());
+        }
+        if ((jogadoresController.buscarPosicao("Defesa").size() - contJogadores)>= minhaTatica.getNumDeJogadoresNaDefesa()) {
+            for(int i = contJogadores; i < minhaTatica.getNumDeJogadoresNaDefesa(); i++){       //Adiciona os jogadores da defesa
+                jogadoresDefesa.add(jogadoresController.buscarPosicao("Defesa").get(i));
+            }
+        }
+        else{
+            for(int i = contJogadores; i < jogadoresController.buscarPosicao("Defesa").size(); i++){  //Adiciona os jogadores no meio campo
+                jogadoresDefesa.add(jogadoresController.buscarPosicao("Defesa").get(i));
+            }
+            int j = jogadoresMeioCampo.size();
+            do  {
+                jogadoresDefesa.add(jogadoresController.buscarPosicao("MeioCampo").get(j));
+                j++;
+                
+            }while (jogadoresDefesa.size() < minhaTatica.getNumDeJogadoresNaDefesa());
         }
 
         novaTaticaAplicada.setAtaque(jogadoresAtaque);              //Seta os jogadores da tatica na Tatica aplicada
