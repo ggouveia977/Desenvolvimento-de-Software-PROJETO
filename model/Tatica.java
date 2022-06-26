@@ -1,12 +1,14 @@
 package model;
 
 public class Tatica {
+
     private String nome;
     private int ataque;
     private int defesa;
     private int meioCampo;
 
-    public Tatica(String nome, int ataque, int defesa, int meioCampo) {
+    public Tatica(String nome, int ataque, int defesa, int meioCampo){
+        
         this.setNome(nome);
         this.ataque = ataque;
         this.defesa = defesa;
@@ -48,4 +50,5 @@ public class Tatica {
     public String getDetalhesTatica() {
         return "" + this.ataque + "-" + this.defesa + "-" + this.meioCampo;
     }
+    
 }

@@ -1,12 +1,12 @@
 package model;
 
-
-
 import controller.JogadoresController;
 import controller.TaticaController;
 
 public class Opcoes {
+
     int idTaticaAplicada = -1;
+    
     JogadoresController jogadoresController = new JogadoresController();
     TaticaController taticacontroller = new TaticaController();
     Jogador jogadorComMelhorPosicaoAtacante = new Jogador();

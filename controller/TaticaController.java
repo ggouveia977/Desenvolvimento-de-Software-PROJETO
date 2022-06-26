@@ -28,4 +28,5 @@ public class TaticaController {
     public void addTatica(Tatica tatica) { // adiciona uma nova tatica
         taticas.add(tatica);
     }
+    
 }

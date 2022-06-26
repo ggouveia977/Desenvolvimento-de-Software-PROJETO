@@ -26,14 +26,13 @@ public class JogadoresController {
 
     public ArrayList<Jogador> buscarPosicao(String posicao) {
         jogadoresNaposicao = new ArrayList<Jogador>();
-        for (Jogador JogadorCadastrado : jogadores) {
-            if (JogadorCadastrado.getMelhorPosicao().equals(posicao)) {
+        for (Jogador JogadorCadastrado : jogadores){
+
+            if (JogadorCadastrado.getMelhorPosicao().equals(posicao)){
                 jogadoresNaposicao.add(JogadorCadastrado);
             }
         }
-
-        return jogadoresNaposicao;
-        
+        return jogadoresNaposicao;       
         
     }
 

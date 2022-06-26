@@ -1,7 +1,7 @@
 package view;
 
 import utils.Console;
-import controller.*;
+
 //import java.util.ArrayList;
 
 //import model.Jogador;
@@ -9,11 +9,10 @@ import controller.*;
 public class Main {
     public static void main(String[] args) {
         int opcao = 0;
-        AdicionarJogador adicionarJogador = new AdicionarJogador();
+        
         Aplicações aplicacoes = new Aplicações();
-        JogadoresController jogadores = new JogadoresController();
-
-
+        AdicionarJogador adicionarJogador = new AdicionarJogador();
+        
         do {
             System.out.println("1 - Montar seu time!");
             System.out.println("2 - Listar Jogadores do seu time! ");
@@ -26,6 +25,7 @@ public class Main {
             opcao = Console.readInt("Digite uma das opções: ");
 
             switch (opcao) {
+
                 case 1:
                     adicionarJogador.adicionar();
                     break;
@@ -54,13 +54,14 @@ public class Main {
                     break;
 
                 case 7:
-                    //opcoes.distribuirTatica();
-                    // System.out.println("Teste");
-                System.out.println(jogadores.buscarPosicao("Ataque"));
-                
+                    System.out.println();
 
-            }
-        } while (opcao != 0);
+                case 8:
+                    aplicacoes.cadastrarTime();
 
+                }
+
+        }while (opcao != 0);
+        
     }
 }
