@@ -6,7 +6,7 @@ import model.Jogador;
 public class JogadoresController {
     
     private static ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
-    private ArrayList<Jogador> jogadoresNaposicao = new ArrayList<Jogador>();
+    private static ArrayList<Jogador> jogadoresNaposicao = new ArrayList<Jogador>();
     
     public void adicionar(Jogador jogador) {
         jogadores.add(jogador); // adiciona um jogador ao array jogadores

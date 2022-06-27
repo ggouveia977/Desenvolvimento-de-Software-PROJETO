@@ -1,4 +1,33 @@
 {
+<<<<<<< HEAD
+    // Use o IntelliSense para saber mais sobre os atributos possíveis.
+    // Focalizar para exibir as descrições dos atributos existentes.
+    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "view.Main",
+            "projectName": "Desenvolvimento-de-Software-PROJETO_241e3081"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "view.Main",
+            "projectName": "Futebol_4c521783"
+        }
+    ]
+}
+=======
   // Use o IntelliSense para saber mais sobre os atributos possíveis.
   // Focalizar para exibir as descrições dos atributos existentes.
   // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
@@ -40,3 +69,4 @@
     }
   ]
 }
+>>>>>>> 156eb53847c02fe1b8048bcfb46eca900bb40b85
