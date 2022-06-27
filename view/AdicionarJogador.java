@@ -9,11 +9,11 @@ public class AdicionarJogador {
 
   ArrayList<Jogador> jogadores = new ArrayList<Jogador>(11);
 
-  public void adicionar(){
+  public void adicionar() {
 
     JogadoresController jogadoresController = new JogadoresController();
     System.out.println("\n -- cadastro jogadores -- \n");
-  
+
     Jogador jogador1 = new Jogador();
     jogador1.setNome("Marcelo1 ");
     jogador1.setCamisa("1");

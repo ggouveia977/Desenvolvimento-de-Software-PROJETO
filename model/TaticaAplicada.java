@@ -32,4 +32,8 @@ public class TaticaAplicada {
         this.meioCampo = meioCampo;
     }
 
+    @Override
+    public String toString() {
+        return "Ataque: " + ataque + "\nDefesa" + defesa + "\nMeio campo" + meioCampo;
+    }
 }

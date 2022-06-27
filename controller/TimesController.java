@@ -1,18 +1,20 @@
 package controller;
 
 import java.util.ArrayList;
+
+import interfaces.Controller;
 import model.Time;
 
-public class TimesController {
-    
+public class TimesController implements Controller<Time> {
+
     private static ArrayList<Time> times = new ArrayList<Time>();
-    
-    public void adicionar(Time jogador) {
-        times.add(jogador); // adiciona um jogador ao array times
+
+    public ArrayList<Time> listar() {
+        return times;
     }
 
-    public ArrayList<Time> puxarLista() {
-        return times; // puxar a lista de times
+    public void adicionar(Time time) {
+        times.add(time); // adiciona um time ao array de times
     }
 
     public void atualizar(int i, Time timeUpdate) {
@@ -22,4 +24,5 @@ public class TimesController {
     public void deletar() { // deleta os times da lista
         times.clear();
     }
+
 }

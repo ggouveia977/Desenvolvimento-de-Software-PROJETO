@@ -1,9 +1,10 @@
 package controller;
 
+import interfaces.Controller;
 import java.util.ArrayList;
 import model.Tatica;
 
-public class TaticaController {
+public class TaticaController implements Controller<Tatica> {
     private static ArrayList<Tatica> taticas = new ArrayList<Tatica>();
 
     public TaticaController() {
@@ -17,7 +18,7 @@ public class TaticaController {
         taticas.add(taticaBalanceada);
     }
 
-    public ArrayList<Tatica> getTaticas() { // método que retorna as taticas
+    public ArrayList<Tatica> listar() { // método que retorna as taticas
         return taticas;
     }
 
@@ -25,8 +26,8 @@ public class TaticaController {
         return taticas.get(opcaoEscolhida - 1);
     }
 
-    public void addTatica(Tatica tatica) { // adiciona uma nova tatica
+    public void adicionar(Tatica tatica) { // adiciona uma nova tatica
         taticas.add(tatica);
     }
-    
+
 }
